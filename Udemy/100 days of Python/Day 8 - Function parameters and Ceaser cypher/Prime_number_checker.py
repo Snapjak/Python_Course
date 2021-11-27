@@ -1,5 +1,4 @@
 def prime_checker(number):
-    x = ""
     prime = True
     for x in range(2, number):
         result = number % x
