@@ -4,28 +4,23 @@ direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
-#TODO-1: Create a function called 'encrypt' that takes the 'text' and 'shift' as inputs.
-def encrypt(text, shift):
-  new_word = ""
-  for letter in text:
-    new_index = ""
-    new_word = []
-    old_index = alphabet.index(letter)
-    new_index = (old_index + shift) % len(alphabet)
-    new_word = new_word.alphabet[new_index]
-  print(''.join(new_word))
+def ceaser(direction, text, shift):
+    cypher_text = ""
+    if direction == "encode":
+        for letter in text:
+            new_index = ""
+            old_index = alphabet.index(letter)
+            new_index = (old_index + shift) % len(alphabet)
+            new_letter = alphabet[new_index]
+            cypher_text += new_letter
+        print(f"Your message is {cypher_text}")
+    elif direction == "decode":
+        for letter in text:
+            old_index = ""
+            position = alphabet.index(letter)
+            old_index = (position - shift) % len(alphabet)
+            new_letter = alphabet[old_index]
+            cypher_text += new_letter 
+        print(f"Your message is {cypher_text}")
 
-    #TODO-2: Inside the 'encrypt' function, shift each letter of the 'text' forwards in the alphabet by the shift amount and print the encrypted text.  
-    #e.g. 
-    #plain_text = "hello"
-    #shift = 5
-    #cipher_text = "mjqqt"
-    #print output: "The encoded text is mjqqt"
-
-    ##HINT: How do you get the index of an item in a list:
-    #https://stackoverflow.com/questions/176918/finding-the-index-of-an-item-in-a-list
-
-    ##🐛Bug alert: What happens if you try to encode the word 'civilization'?🐛
-
-#TODO-3: Call the encrypt function and pass in the user inputs. You should be able to test the code and encrypt a message.
-encrypt(text, shift)
+ceaser(direction, text, shift)
