@@ -1,26 +1,29 @@
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
+import art
+print(art.logo)
+continue_game = True
 
 def ceaser(direction, text, shift):
     cypher_text = ""
-    if direction == "encode":
-        for letter in text:
+    if direction == "decode":
+        shift *= -1
+    for char in text:
+        if char in alphabet:
             new_index = ""
-            old_index = alphabet.index(letter)
+            old_index = alphabet.index(char)
             new_index = (old_index + shift) % len(alphabet)
-            new_letter = alphabet[new_index]
-            cypher_text += new_letter
-        print(f"Your message is {cypher_text}")
-    elif direction == "decode":
-        for letter in text:
-            old_index = ""
-            position = alphabet.index(letter)
-            old_index = (position - shift) % len(alphabet)
-            new_letter = alphabet[old_index]
-            cypher_text += new_letter 
-        print(f"Your message is {cypher_text}")
+            cypher_text += alphabet[new_index]
+        else:  
+            cypher_text += char
+ 
+    print(f"Your message is {cypher_text}")
 
-ceaser(direction, text, shift)
+while continue_game:
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+    text = input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
+    ceaser(direction, text, shift)
+    stop_game = input("Do you want to try again? 'Yes' or 'No': ").lower()
+    if stop_game == "no":
+        continue_game = False
+        print("Goodbye")
