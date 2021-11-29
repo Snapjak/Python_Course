@@ -1,0 +1,54 @@
+import art
+import os
+os.system('clear')
+
+#Add
+def addition(first_number, second_number):
+    result = first_number + second_number
+    return result
+
+#Substract
+def substratcion(first_number, second_number):
+    result = first_number - second_number
+    return result
+
+
+#Multiply
+def multiplication(first_number, second_number):
+    result = first_number * second_number
+    return result
+
+
+#Divide
+def division(first_number, second_number):
+    result = first_number / second_number
+    return result
+
+operations = {
+    "+": addition,
+    "-": substratcion,
+    "*": multiplication,
+    "/": division,
+    }
+def calculator():
+    print(art.logo)
+    first_number = int(input("Insert first number:"))
+    for key in operations:
+        print(key)
+    continue_calc = True
+
+    while continue_calc:
+        operator = input("Pick an operation: ")
+        second_number = int(input("Insert another number: "))
+        calculation_function =  operations[operator]
+        result = calculation_function(first_number, second_number)
+
+        print(f"{first_number} {operator} {second_number} = {result}")
+        again = input(f"Type 'Y' if you want to doanother operation on {result}, or 'N' to start a new operation")
+        if again == "Y":
+            first_number = result
+        else:
+            clear = lambda: os.system('clear')
+            clear()
+            continue_calc = False
+            calculator()
