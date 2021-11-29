@@ -41,7 +41,8 @@ def calculator():
         operator = input("Pick an operation: ")
         second_number = float(input("Insert another number: "))
         calculation_function = operations[operator]
-        result = calculation_function(first_number, second_number)
+        #calculation function will take the form of the whichever function is above based on the key
+        result = calculation_function(first_number, second_number) #here is takes the arguments also to plug them in the relative function
 
         print(f"{first_number} {operator} {second_number} = {result}")
         again = input(f"Type 'Y' if you want to doanother operation on {result}, or 'N' to start a new operation: ").lower()
