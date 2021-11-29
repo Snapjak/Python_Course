@@ -32,23 +32,28 @@ operations = {
     }
 def calculator():
     print(art.logo)
-    first_number = int(input("Insert first number:"))
+    first_number = float(input("Insert first number:"))
     for key in operations:
         print(key)
     continue_calc = True
 
     while continue_calc:
         operator = input("Pick an operation: ")
-        second_number = int(input("Insert another number: "))
-        calculation_function =  operations[operator]
+        second_number = float(input("Insert another number: "))
+        calculation_function = operations[operator]
         result = calculation_function(first_number, second_number)
 
         print(f"{first_number} {operator} {second_number} = {result}")
-        again = input(f"Type 'Y' if you want to doanother operation on {result}, or 'N' to start a new operation")
-        if again == "Y":
+        again = input(f"Type 'Y' if you want to doanother operation on {result}, or 'N' to start a new operation: ").lower()
+        if again == "y":
             first_number = result
-        else:
+        elif again == "n":
             clear = lambda: os.system('clear')
             clear()
             continue_calc = False
             calculator()
+        else:
+            print("I dont know what you mean... let's start again anw")
+            again = input(f"Type 'Y' if you want to doanother operation on {result}, or 'N' to start a new operation: ").lower()
+
+calculator()
