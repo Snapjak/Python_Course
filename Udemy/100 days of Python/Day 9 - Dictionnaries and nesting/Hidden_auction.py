@@ -20,8 +20,8 @@ while end_game ==  False:
     max = 0
     for key in bids:
       if bids[key] > max:
-        max = bids[key]
-    print(f"The highest bid is for {name} with a bid price of {bid_price}$")
+        max = bids[key] 
+    print(f"The highest bid is for {name} with a bid price of {max}$")
   elif others == "yes":
     clear = lambda: os.system('clear')
     clear()
