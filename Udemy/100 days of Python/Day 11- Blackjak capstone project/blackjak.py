@@ -11,16 +11,61 @@ if decision == "y":
 your_cards = []
 computer_cards = []
 current_score = 0
+computer_1st = 0
+computer_score = 0
 
 for card in range(2):
-    card = random.choice(cards)
-    your_cards.append(card)
-    current_score += card
+    mycard = random.choice(cards)
+    pc_card = random.choice(cards)
+    your_cards.append(mycard)
+    computer_cards.append(pc_card)
+    current_score += mycard
+computer_1st = computer_cards[0]
 print(f"Your cards: {your_cards}, current score: {current_score}") 
+print(f"Computer first card: {computer_1st}")
+hit = input("Do you want another card? 'y' or 'n': ").lower()
+
+for card in computer_cards:
+    computer_score += card
+while computer_score < 17:
+    added_comp_card = random.choice(cards)
+    computer_cards.append(added_comp_card)
+    computer_score += added_comp_card
+
+if hit == "y":
+    added_card = random.choice(cards)
+    your_cards.append(added_card)
+    current_score += added_card
+    if current_score > 21:
+        print(f"Your cards: {your_cards}, current score: {current_score}")
+        print(f"Computer first card: {computer_1st}")
+        print(f"Your final hand: {your_cards}, final score: {current_score}")
+        print(f"Computer final hand: {computer_cards}, computer score: {computer_score}")
+        print("You went over, you lost !")
+    elif current_score < 21:
+        print(hit)
+    else:
+        print(f"Your cards: {your_cards}, current score: {current_score}")
+        print(f"Computer first card: {computer_1st}")
+        print(f"Your final hand: {your_cards}, final score: {current_score}")
+        print(f"Computer final hand: {computer_cards}, computer score: {computer_score}")
+        print("Blackjak you win !")
+else:
+    if current_score > computer_score and current_score < 21:
+        print(f"Your final hand: {your_cards}, final score: {current_score}")
+        print(f"Computer final hand: {computer_cards}, computer score: {computer_score}")
+        print("You win !")
+    elif current_score < computer_score and computer_score < 21:
+        print(f"Your final hand: {your_cards}, final score: {current_score}")
+        print(f"Computer final hand: {computer_cards}, computer score: {computer_score}")
+        print("Computer wins !")
+    else:
+        print(f"Your final hand: {your_cards}, final score: {current_score}")
+        print(f"Computer final hand: {computer_cards}, computer score: {computer_score}")
+        print("Draw :)")
+
+
     
-
-
-
 
 ############### Blackjack Project #####################
 
