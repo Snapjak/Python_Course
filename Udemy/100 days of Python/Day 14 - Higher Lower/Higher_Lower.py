@@ -2,8 +2,6 @@ import art
 import random as r
 import data as d
 
-print (art.logo)
-
 A = 0
 B = 0
 follower_A = 0
@@ -11,7 +9,7 @@ follower_B = 0
 score = 0
 end_game = False
 
-def pick_from_dic(a):
+def pick_from_dic():
     key_1 = r.choice(d.data)
     a = (f"{key_1['name']}, a {key_1['description']}, from {key_1['country']}")
     follower = key_1["follower_count"]
@@ -33,31 +31,41 @@ def compare_followers(G, S):
     elif follower_A > follower_B and G == "A":
         S += 1
         print(f"You are right! Current score: {S}")
-        A = B
-        follower_A = follower_B
-        B = pick_from_dic(B)[0]
-        follower_B = pick_from_dic(B)[1]
+        return S
     elif follower_B > follower_A and G == "B":
         S += 1
         print(f"You are right! Current score: {S}")
+        return S
+
+def comparator():
+    global follower_B
+    global A
+    global B
+    global follower_A
+    global score
+    if score == 0:
+        C = pick_from_dic()
+        A = C[0] 
+        follower_A = C[1]
+    else:
         A = B
         follower_A = follower_B
-        B = pick_from_dic(B)[0]
-        follower_B = pick_from_dic(B)[1]
 
-def comparator(a, b):
-    a = pick_from_dic(a)[0]
-    follower_A = pick_from_dic(a)[1]
-    print(f"Compare A: {a}")
+    print(f"Compare A: {A}")
 
     print (art.vs)
 
-    b = pick_from_dic(b)[0]
-    follower_B = pick_from_dic(b)[1]
-    print (f"Against B: {b}")
+    C = pick_from_dic()
+    B = C[0]
+    follower_B = C[1]
+    print (f"Against B: {B}")
 
 while end_game == False:
-    comparator(A, B)
+    print (art.logo)
+    comparator()
     guess = input("Who has more followers? Type 'A' or 'B': ").upper()
-    compare_followers (guess, score)
+    score = compare_followers (guess, score)
+    
+        
+    
 
