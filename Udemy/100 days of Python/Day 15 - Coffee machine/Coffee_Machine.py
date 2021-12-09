@@ -6,6 +6,7 @@ money = 0
 
 #Extract resources to variables
 resources = b.resources
+print(resources)
 
 #Prompt user by asking “What would you like? (espresso/latte/cappuccino):”
 
@@ -31,13 +32,14 @@ check_user_input()
 for key in b.MENU:
     if choice == key:
         for key2 in resources:
-            if key2 not in b.MENU[choice]:
+            if key2 not in b.MENU[choice]["ingredients"]:
                 continue
-            ingredients = (b.MENU[choice][key2])
-        cost = b.MENU[choice][1]
-        print(cost)
-        print(ingredients)
-
+            ingredients = (b.MENU[choice]["ingredients"])
+            if resources[key2] - ingredients[key2] <= 0:
+                print(f"Sorry there is not enough {key2}")
+            else:
+                resources[key2] -= ingredients[key2]      
+    cost = b.MENU[choice]["cost"]
 
 # The prompt should show every time action has completed, e.g. once the drink is
 # dispensed. The prompt should show again to serve the next customer.
