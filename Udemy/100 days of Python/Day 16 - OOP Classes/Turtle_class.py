@@ -1,12 +1,22 @@
-from turtle import Turtle, Screen
+from turtle import Turtle, Screen, left
+import turtle
+from prettytable import PrettyTable
 
-timmy = Turtle()
-print(timmy)
-timmy.shape("turtle")
-timmy.color("red")
-timmy.forward(100)
+table = PrettyTable()
+table.add_column("Pokemon Name",["Pikachu", "Squirtle", "Charmandar"])
+table.add_column("Type", ["Electric", "Water", "Fire"])
+table.align = "l"
 
-my_screen = Screen()
-print(my_screen.canvheight)
+print(table)
 
-my_screen.exitonclick()
+
+# timmy = Turtle()
+# print(timmy)
+# timmy.shape("turtle")
+# timmy.color("red")
+# timmy.forward(100)
+
+# my_screen = Screen()
+# print(my_screen.canvheight)
+
+# my_screen.exitonclick()
