@@ -4,28 +4,31 @@ from money_machine import MoneyMachine
 
 
 menu = Menu()
-machine = CoffeeMaker()
+coffee_maker = CoffeeMaker()
 money = 0
+
 turn_off = False
-
-choice = input(f"What would you like? {menu.get_items()}: ")
-
-drink = menu.find_drink(choice)
-choice_cost = drink.cost
 
 def check_user_input():
     success = True
-
     if choice == "off":
         exit
         turn_off = True
     elif choice == "report":
-        machine.report()
+        coffee_maker.report()
         print (f"Money: ${money}")
-    elif drink != None:
-        print(f"You ordered {choice}")
+        return success
+
+while turn_off == False:
+    choice = input(f"What would you like? {menu.get_items()}: ")
 
 check_user_input()
+    success = check_user_input()
+
+drink = menu.find_drink(choice)
+choice_cost = drink.cost
+
+
 #         print("Please insert valid choice.")
 #         success = False
 
