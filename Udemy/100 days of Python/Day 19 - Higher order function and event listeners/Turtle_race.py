@@ -4,7 +4,6 @@ from random import randint
 screen = Screen()
 screen.setup(width = 500, height = 400)
 user_bet = screen.textinput(title = "Make your bet", prompt = "Which turtle will win the race? enter a color: ")
-print(user_bet)
 
 is_race_on = False
 
