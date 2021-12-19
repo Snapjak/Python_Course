@@ -1,4 +1,4 @@
-from turtle import Turtle, onkey
+from turtle import Turtle, onkey, position
 import turtle
 
 
@@ -7,19 +7,25 @@ class Snake():
     def __init__(self):
         self.starting_positions = [(0, 0), (-20, 0), (-40, 0)]
         self.segments = []
-        def create_turtle(new_turtle):
-            new_turtle = Turtle()
-            new_turtle.shape("square")
-            new_turtle.color("white")
-            return new_turtle
-
-        for x in self.starting_positions:
-            tim = create_turtle(x)
-            tim.penup()
-            tim.goto(x)
-            self.segments.append(tim)
+        self.create_snake()
         self.head = self.segments[0]
     
+    def create_snake(self):
+        for position in self.starting_positions:
+            tim = self.add_segment(position)
+
+    def add_segment(self, position):
+        new_segment = Turtle()
+        new_segment.shape("square")
+        new_segment.color("white")
+        new_segment.penup()
+        new_segment.goto(position)
+        self.segments.append(new_segment)    
+    
+    def extend(self):
+        self.add_segment(self.segments[-1].position())
+
+
     def move(self):
         for seg_num in range (len(self.segments) -1, 0,-1):
             new_x = self.segments[seg_num - 1].xcor()
