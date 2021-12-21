@@ -8,7 +8,7 @@ screen = Screen()
 r_paddle = Paddle((350, 0))
 l_paddle = Paddle((-350, 0))
 ball = Ball()
-score = Scoreboard()
+scoreboard = Scoreboard()
 game_is_on = True
 
 screen.bgcolor("black")
@@ -18,15 +18,15 @@ screen.tracer(0)
 screen.listen()
 
 # Move left paddle
-screen.onkey(key="w", fun= l_paddle.move_up)
-screen.onkey(key="s",fun=  l_paddle.move_down)
+screen.onkeypress(key="w", fun= l_paddle.move_up)
+screen.onkeypress(key="s",fun=  l_paddle.move_down)
 
 # Move right paddle
-screen.onkey(key="Up", fun= r_paddle.move_up)
-screen.onkey(key="Down",fun=  r_paddle.move_down)
+screen.onkeypress(key="Up", fun= r_paddle.move_up)
+screen.onkeypress(key="Down",fun=  r_paddle.move_down)
 
 while game_is_on:
-    time.sleep(0.1)
+    time.sleep(ball.move_speed)
     screen.update()
     ball.move()
 
@@ -44,10 +44,12 @@ while game_is_on:
     # Detect right paddle misses
     if ball.xcor() > 400:
         ball.reset_position()
+        scoreboard.l_point()
 
     # Detect left paddle misses
     elif ball.xcor() < -400:
         ball.reset_position()
+        scoreboard.r_point()
 
 
 
