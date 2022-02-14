@@ -9,7 +9,7 @@ with open("/home/jeremy/repos/Udemy/100 days of Python/Day 26 - list comprehensi
     result2 = [x.strip() for x in numbers_2]
     print (result2)
 
-result = [x for x in result2 if x in result1]
+result = [int(x) for x in result2 if x in result1]
 
 # Write your code above 👆
 

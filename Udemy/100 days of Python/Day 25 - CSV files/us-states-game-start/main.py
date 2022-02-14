@@ -17,12 +17,9 @@ while len(guessed_states) < 50:
     states = data.state.to_list()
 
     if answer_state == "Exit":
-        missing_states = []
-        for state in states:
-            if state not in guessed_states:
-                missing_states.append(state)
+        missing_states = [state for state in states if state not in guessed_states]
         break
-
+    
     if answer_state in states:
         t = turtle.Turtle()
         t.hideturtle()
