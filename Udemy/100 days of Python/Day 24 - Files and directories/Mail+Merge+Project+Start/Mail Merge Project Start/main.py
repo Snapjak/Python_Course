@@ -13,7 +13,6 @@ with open("/home/jeremy/repos/Udemy/100 days of Python/Day 24 - Files and direct
 
 with open("/home/jeremy/repos/Udemy/100 days of Python/Day 24 - Files and directories/Mail+Merge+Project+Start/Mail Merge Project Start/Input/Names/invited_names.txt", "r") as names:
     invited_guests = names.readlines()
-    print(invited_guests)
 
 for name in invited_guests:
     new_name = name.strip()
